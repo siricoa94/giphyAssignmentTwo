@@ -37,7 +37,7 @@ $(document).on("click", "button", function (){
     var queryURL =     $(document).on("click", "button", function () {
         var id = $(this).attr("id")
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + id +
-            "&api_key=W6x4R780WwYgHtCIOLJvDK8tSrt1C4rt&limit=10";
+            "&api_key=W6x4R780WwYgHtCIOLJvDK8tSrt1C4rt&limit=1";
         $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -58,8 +58,8 @@ $(document).on("click", "button", function (){
                 $("#gif").on("click", function (){
                     var state = $(this).attr("data-state");
                     if (state === "still") {
-                        $(this).attr("src", $(this).attr("data-still"));
-                        $(this).attr("data-state", "still");
+                        $(this).attr("src", $(this).attr("data-animate"));
+                        $(this).attr("data-state", "animate");
                     } else {
                         $(this).attr("src", $(this).attr("data-still"));
                         $(this).attr("data-state", "still");
@@ -67,15 +67,14 @@ $(document).on("click", "button", function (){
                 });
             });
 });
-
-
+})
 $("#add-movie").on("click", function(event){
     event.preventDefault();
     var movies = $("#movie-input").val().trim();
     movie.push(movies);
     renderButtons();
 });
-})
+
 function renderButtons() {
     $("#buttons-view").empty();
     for (var i = 0; i < movie.length; i++) {
