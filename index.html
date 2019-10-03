@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="assets/js/api.js"></script>
+    <title>Movie Gift-Task-O-Matic</title>
+</head>
+<body>
+    <div id="buttonContainer"></div>
+        <div class="container">
+            <h1 id="moviesearch">Movie Search, Powered By GIPHY</h1>
+
+            <div id="buttons-view"></div>
+
+            <form id="movie-form">
+                <label for="movie-input" id="movieFormTitle">Enter a vehicle name of your choosing</label>
+                <input type="text" id="movie-input">
+                <br>
+
+
+                <input id="add-movie" type="submit" value="Add To List">
+            </form>
+        </div>
+    <div id="gifContainer"></div>
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+// these will be appended to the page when the document loads
+var movies = ["Street fighter","Terminator","Titanic","Scream","A Clockwork Orange"];
+
+// this will be the function for clicking the buttons appended below the search
+$(document).on("click", "button", function (){
+    var id = $(this).attr("id")
+    var queryURL =     $(document).on("click", "button", function () {
+        var id = $(this).attr("id")
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + id +
+            "&api_key=W6x4R780WwYgHtCIOLJvDK8tSrt1C4rt&limit=10";
+        $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            .then(function (response){
+                var results = response.data;
+                for (var i = 0; i <results.length; i++){
+                    var rating = results[i].rating;
+                    var p = $("<p>").text("Rating: " + rating);
+                    var movieImg = $("<img>");
+                    movieImg.addClass("gif");
+                    movieImg.attr("src", results[i].images);
+                    $("#giffContainer").prepend(movieImg);
+                    $("#giffContainer").prepend(p)
+
+                }
+                $("#gif").on("click", function (){
+                    var state = $(this).attr("data-state");
+                    if (state === "still") {
+                        $(this).attr("src", $(this).attr("data-still"));
+                        $(this).attr("data-state", "still");
+                    }
+                });
+            });
+});
+
+function renderButtons() {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topic.length; i++) {
+        var a = $("<button id=" + topic [i] + ">");
+        a.addClass("movie-btn");
+        a.attr("data-name", topic[i]);
+        a.text(topic[i]);
+        $("#buttons-view").append(a);
+
+    }
+}
+$("#add-movie").on("click", function(event){
+    event.preventDefault();
+    var topics = $("#movie-input").val().trim();
+    topic.push(topics);
+    renderButtons();
+});
+renderButtons();
+})
+</script>
+
+
+
+</html>
