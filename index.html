@@ -29,7 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 // these will be appended to the page when the document loads
-var movies = ["Street fighter","Terminator","Titanic","Scream","A Clockwork Orange"];
+var movie = ["Street fighter","Terminator","Titanic","Scream","A Clockwork Orange"];
 
 // this will be the function for clicking the buttons appended below the search
 $(document).on("click", "button", function (){
@@ -42,21 +42,25 @@ $(document).on("click", "button", function (){
                 url: queryURL,
                 method: "GET"
             })
-            .then(function (response){
+            .then(function (response) {
                 var results = response.data;
-                for (var i = 0; i <results.length; i++){
+                for (var i = 0; i < results.length; i++) {
                     var rating = results[i].rating;
                     var p = $("<p>").text("Rating: " + rating);
-                    var movieImg = $("<img>");
-                    movieImg.addClass("gif");
-                    movieImg.attr("src", results[i].images);
-                    $("#giffContainer").prepend(movieImg);
-                    $("#giffContainer").prepend(p)
-
+                    var movieImage = $("<img>");
+                    movieImage.addClass("gif");
+                    movieImage.attr("src", results[i].images.fixed_height_still.url);
+                    movieImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    movieImage.attr("data-animate", results[i].images.fixed_height.url);
+                    $("#gifContainer").prepend(movieImage);
+                    $("#gifContainer").prepend(p)
                 }
                 $("#gif").on("click", function (){
                     var state = $(this).attr("data-state");
                     if (state === "still") {
+                        $(this).attr("src", $(this).attr("data-still"));
+                        $(this).attr("data-state", "still");
+                    } else {
                         $(this).attr("src", $(this).attr("data-still"));
                         $(this).attr("data-state", "still");
                     }
@@ -64,25 +68,26 @@ $(document).on("click", "button", function (){
             });
 });
 
+
+$("#add-movie").on("click", function(event){
+    event.preventDefault();
+    var movies = $("#movie-input").val().trim();
+    movie.push(movies);
+    renderButtons();
+});
+})
 function renderButtons() {
     $("#buttons-view").empty();
-    for (var i = 0; i < topic.length; i++) {
-        var a = $("<button id=" + topic [i] + ">");
+    for (var i = 0; i < movie.length; i++) {
+        var a = $("<button id=" + movie [i] + ">");
         a.addClass("movie-btn");
-        a.attr("data-name", topic[i]);
-        a.text(topic[i]);
+        a.attr("data-name", movie[i]);
+        a.text(movie[i]);
         $("#buttons-view").append(a);
 
     }
 }
-$("#add-movie").on("click", function(event){
-    event.preventDefault();
-    var topics = $("#movie-input").val().trim();
-    topic.push(topics);
-    renderButtons();
-});
 renderButtons();
-})
 </script>
 
 
