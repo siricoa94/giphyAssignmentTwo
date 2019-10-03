@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="assets/js/api.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Movie Gift-Task-O-Matic</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             <div id="buttons-view"></div>
 
             <form id="movie-form">
-                <label for="movie-input" id="movieFormTitle">Enter a vehicle name of your choosing</label>
+                <label for="movie-input" id="movieFormTitle">Enter a movie name of your choosing</label>
                 <input type="text" id="movie-input">
                 <br>
 
@@ -29,12 +29,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 // these will be appended to the page when the document loads
-var movie = ["Street fighter","Terminator","Titanic","Scream","A Clockwork Orange"];
+    var movie = ["Street fighter","Terminator","Titanic","Scream","A Clockwork Orange"];
 
 // this will be the function for clicking the buttons appended below the search
-$(document).on("click", "button", function (){
-    var id = $(this).attr("id")
-    var queryURL =     $(document).on("click", "button", function () {
+    $(document).on("click", "button", function () {
         var id = $(this).attr("id")
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + id +
             "&api_key=W6x4R780WwYgHtCIOLJvDK8tSrt1C4rt&limit=1";
@@ -55,7 +53,7 @@ $(document).on("click", "button", function (){
                     $("#gifContainer").prepend(movieImage);
                     $("#gifContainer").prepend(p)
                 }
-                $("#gif").on("click", function (){
+                $(".gif").on("click", function (){
                     var state = $(this).attr("data-state");
                     if (state === "still") {
                         $(this).attr("src", $(this).attr("data-animate"));
@@ -66,16 +64,8 @@ $(document).on("click", "button", function (){
                     }
                 });
             });
-});
-})
-$("#add-movie").on("click", function(event){
-    event.preventDefault();
-    var movies = $("#movie-input").val().trim();
-    movie.push(movies);
-    renderButtons();
-});
-
-function renderButtons() {
+    });
+    function renderButtons() {
     $("#buttons-view").empty();
     for (var i = 0; i < movie.length; i++) {
         var a = $("<button id=" + movie [i] + ">");
@@ -85,10 +75,16 @@ function renderButtons() {
         $("#buttons-view").append(a);
 
     }
-}
-renderButtons();
+    }
+    $("#add-movie").on("click", function(event){
+    event.preventDefault();
+    var movies = $("#movie-input").val().trim();
+    movie.push(movies);
+    renderButtons();
+    });
+
+
+    renderButtons();
 </script>
-
-
 
 </html>
