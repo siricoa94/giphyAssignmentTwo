@@ -1,3 +1,9 @@
+body{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    
+}
 nav{
     position: fixed;
     background-color: black;
@@ -8,20 +14,19 @@ nav{
 }
 #container{
     position: absolute;
-    top: 30%;
+    top: 10%;
     left: 10%;
     width:80%;
-    height: 80%;
+    height: 90%;
     background-color: lightgrey;
     z-index: -1;
-    background-attachment: scroll;
 }
 #titleDiv {
     position: absolute;
     left: 40%;
     right: 40%;
     width: 20%;
-    top: 10%;
+    top: 0%;
     text-align: center;
     background: turquoise;
 }
@@ -32,12 +37,37 @@ nav{
     left: 40%;
     right: 40%;
 }
-#gifContainer {
+#movieFormTitle {
+    position: absolute;
+    top: 45%;
+    left: 40%;
+}
+#movie-input {
     position: absolute;
     top: 50%;
+    left: 40%;
+}
+#add-movie {
+    position: absolute;
+    top: 50%;
+    left: 54%;
+
+}
+#gifContainer {
+    position: absolute;
+    top: 55%;
     width: 20%;
     height: 40%;
     left: 40%;
     right: 40%;
-    overflow: scroll;
+    overflow: hidden;
+}
+footer{
+    position: absolute;
+    bottom: 0%;
+    height: 5%;
+    width: 125.03%;
+    left: -12.5%;
+    background-color: black;
+    color: lime;
 }
