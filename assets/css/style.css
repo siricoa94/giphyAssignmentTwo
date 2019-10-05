@@ -1,7 +1,7 @@
 body{
     height: 100%;
     width: 100%;
-    background-color: red;
+    background-color: white;
     
 }
 nav{
@@ -32,30 +32,30 @@ nav{
 }
 #buttons-view{
     position: absolute;
-    top: 30%;
-    width: 20%;
-    left: 40%;
-    right: 40%;
+    top: 80%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
 }
 #movieFormTitle {
     position: absolute;
-    top: 45%;
+    top: 20%;
     left: 40%;
 }
 #movie-input {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 40%;
 }
 #add-movie {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 54%;
 
 }
 #gifContainer {
     position: absolute;
-    top: 55%;
+    top: 30%;
     width: 20%;
     height: 40%;
     left: 40%;
@@ -63,11 +63,27 @@ nav{
     overflow: hidden;
 }
 footer{
-    position: absolute;
+    position: fixed;
     bottom: 0%;
     height: 5%;
     width: 125.03%;
     left: -12.5%;
     background-color: black;
     color: lime;
+    text-align: center;
+    z-index: -2;
+}
+
+/* Font Size */
+#moviesearch{
+    font-size: 100%;
+    font-size-adjust: inherit;
+}
+
+/* Button */
+.movie-btn{
+    width: 10%;
+    height: 20%;
+    border-radius: 1rem;
+    margin: 4px
 }
